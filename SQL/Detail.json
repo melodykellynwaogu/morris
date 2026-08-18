@@ -1,8 +1,9 @@
+
 {
-    "image": "kelly.png",
+    "image": "./assets/kelly.png",
     "name": "Melody Kelly",
     "profession": "Growing AppSec Engineer",
-    "years": 1,
-    "about": "Melody Kelly is a growing AppSec Engineer and moving in pace to acquiring a strong ability in the cybersecurity field. He works with modern developing tools and now mastering the security tools.",
+    "years": "<1",
+    "about": "Melody Kelly is an aspiring AppSec Engineer rapidly building strong expertise in the cybersecurity domain. He leverages modern development workflows while mastering industry-standard security tools.",
     "website": "melodykn.vercel.app"
 }
