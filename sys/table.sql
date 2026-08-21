@@ -14,3 +14,4 @@ WHERE id = 6 /* 6 representing the movies title id row */
 SELECT title, year 
 FROM movies
 WHERE year <= 2003
+LIMIT 2, OFFSET 2;
