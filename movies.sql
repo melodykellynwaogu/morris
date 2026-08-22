@@ -1,14 +1,11 @@
-
-
-CREATE TABLE cyber (
-    id INTEGER PRIMARY KEY,
-    name TEXT, 
-    rating INTEGER 
-);
-
-INSERT INTO cyber (1, 'Tuesday', 5);
-INSERT INTO cyber (2, 'Thusday', 6);
-INSERT INTO cyber (3, 'Friday', 7);
-INSERT INTO cyber (4, 'Sunday', 10);
-
-SELECT * FROM cyber
+CREATE TABLE movies (id INTEGER PRIMARY KEY, name TEXT, release_year INTEGER);
+INSERT INTO movies VALUES (1, "Avatar", 2009);
+INSERT INTO movies VALUES (2, "Titanic", 1997);
+INSERT INTO movies VALUES (3, "Star Wars: Episode IV - A New Hope", 1977);
+INSERT INTO movies VALUES (4, "Shrek 2", 2004);
+INSERT INTO movies VALUES (5, "The Lion King", 1994);
+INSERT INTO movies VALUES (6, "Disney's Up", 2009);
+ 
+ 
+SELECT * FROM movies;
+SELECT * FROM movies WHERE release_year > 2000 ORDER BY release_year;
