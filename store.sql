@@ -1,4 +1,4 @@
--- Active: 1787325515698@@127.0.0.1@3306@store
+-- Active: 1787506911214@@127.0.0.1@3306@store
 CREATE TABLE store (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, aisle INTEGER, quantity INTEGER);
 
 INSERT INTO store VALUES (1, "Apples", 150, 1, 50);
