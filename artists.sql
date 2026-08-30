@@ -1,5 +1,7 @@
+-- Active: 1787882099024@@127.0.0.1@3306@artists
+DROP TABLE IF EXISTS artists;
 CREATE TABLE artists (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     name TEXT,
     country TEXT,
     genre TEXT);
@@ -30,7 +32,7 @@ INSERT INTO artists (name, country, genre)
     VALUES ("Bob Marley", "Jamaica", "Reggae");
 
 CREATE TABLE songs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
     artist TEXT,
     title TEXT);
 
@@ -57,5 +59,13 @@ INSERT INTO songs (artist, title)
 INSERT INTO songs (artist, title)
     VALUES ("Guns N' Roses", "Don't cry");
     
-SELECT title FROM songs WHERE artists = "Queen";
-SELECT name FROM artist WHERE genre LIKE "Pop"
+SELECT title FROM songs WHERE artist = "Queen";
+
+SELECT name FROM artists WHERE genre LIKE "Pop";
+
+SELECT title FROM songs WHERE artist IN (
+    SELECT name FROM artists WHERE genre LIKE "Pop"
+)
+
+
+

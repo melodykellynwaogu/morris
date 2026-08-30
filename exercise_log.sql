@@ -1,4 +1,4 @@
--- Active: 1787574930457@@127.0.0.1@3306@exercise_log
+-- Active: 1787882099024@@127.0.0.1@3306@exercise_logs
 DROP DATABASE IF EXISTS exercise_logs;
 CREATE TABLE exercise_logs
     (id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -17,22 +17,54 @@ INSERT INTO exercise_logs(type, minutes, calories, heart_rate) VALUES ("hiking",
 
 SELECT * FROM exercise_logs WHERE type = "biking";
 SELECT * FROM exercise_logs WHERE type NOT IN ("biking", "hiking", "tree clambing", "rowing");
+SELECT type, SUM(calories) AS total_calories FROM exercise_logs GROUP BY type;
 
-DROP TABLE IF EXISTS drs_favourites;
-CREATE Table drs_favourites (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    type TEXT,
-    reason TEXT,
-)
+SELECT type, AVG(calories) AS avg_calories FROM exercise_logs GROUP BY type HAVING avg_calories > 70;
 
-INSERT INTO drs_favorites(type, reason) VALUES ("biking", "Improves endurance and flexibility.");
-INSERT INTO drs_favorites(type, reason) VALUES ("hiking", "Increases cardiovascular health.");
-
-SELECT * FROM exercise_logs WHERE type IN (
-    SELECT * FROM drs_favourites 
-);
+SELECT type FROM exercise_logs GROUP BY type HAVING COUNT(*) >= 2 ;
+SELECT COUNT(*) FROM exercise_logs WHERE heart_rate > 220 -18;
 
 
-SELECT * FROM exercise_logs WHERE type IN (
-    SELECT * FROM drs_favourites WHERE type LIKE "cardiovascular"
-);
+/* 50-90% of max*/
+SELECT COUNT(*) FROM exercise_logs WHERE
+    heart_rate >= ROUND(0.50 * (220-30)) 
+    AND  heart_rate <= ROUND(0.90 * (220-30));
+/* CASE */
+SELECT type, heart_rate
+    CASE 
+        WHEN heart_rate > 220-18 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-18)) THEN "above target" 
+        WHEN heart_rate > ROUND(0.50 * (220-18)) THEN "within target"
+        ELSE  "below target"
+    END as "hr_zone";
+
+SELECT COUNT(*), 
+    CASE 
+        WHEN heart_rate > 220-18 THEN "above max"
+        WHEN heart_rate > ROUND(0.90 * (220-18)) THEN "above target"
+        WHEN heart_rate > ROUND(0.50 * (220-18)) THEN "within target"
+        ELSE  "below target"
+    END as "hr_zone"
+    GROUP BY hr_zone;
+
+SELECT name, number_grade ROUND(fraction_completed * 100) AS percent_completed FROM books;
+SELECT type, 
+
+
+-- CREATE Table drs_favourites (
+--     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+--     type TEXT,
+--     reason TEXT,
+-- )
+
+-- INSERT INTO drs_favorites(type, reason) VALUES ("biking", "Improves endurance and flexibility.");
+-- INSERT INTO drs_favorites(type, reason) VALUES ("hiking", "Increases cardiovascular health.");
+
+-- SELECT * FROM exercise_logs WHERE type IN (
+--     SELECT * FROM drs_favourites 
+-- );
+
+
+-- SELECT * FROM exercise_logs WHERE type IN (
+--     SELECT * FROM drs_favourites WHERE type LIKE "cardiovascular"
+-- );
