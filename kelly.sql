@@ -4,7 +4,7 @@ CREATE TABLE kelly (
     name VARCHAR(255),
     skills VARCHAR(255),
     rate INT,
-    occupation VARCHAR(255)
+    tools VARCHAR(255)
 );
 
 INSERT INTO kelly (name, skills, rate, tools) VALUES ('Kelly', 'Network Defends', 40, 'Security Analyst');
