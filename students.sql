@@ -28,6 +28,16 @@ INSERT INTO student_grades (student_id, test, grade, passmark)
 INSERT INTO student_grades (student_id, test, grade)
     VALUES (2, "Chemistry", 95);
 
+
+CREATE TABLE student_projects (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    student_id INTEGER,
+    title TEXT
+);
+
+INSERT INTO student_projects (student_id, title) VALUES (1, "Carrotapault");
+
+
 SELECT * FROM student_grades
 
 /* using a cross join */
@@ -46,7 +56,7 @@ SELECT students.first_name, student.last_name, student.email, student.phone, stu
 
 SELECT persons.name, hobbies.name FROM persons
     JOIN hobbies
-    ON persons.id = hobbies.person_id
+    ON persons.id = hobbies.person_id;
 SELECT 
 	CASE 
 		WHEN student_grades > 95 THEN 'Master'
@@ -56,3 +66,9 @@ SELECT
 	END AS 'Best Student'
 FROM student_grades
 GROUP BY passmark;
+
+
+
+SELECT student.first_name, student.last_name, student_projects.title FROM students
+    JOIN student_projects
+    ON students.id = student_projects.student_id;
